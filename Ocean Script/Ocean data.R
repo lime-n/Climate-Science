@@ -3,6 +3,7 @@ library(raster)
 library(ncdf4)
 library(lubridate)
 library(rworldmap)
+library(sf)
 
 # get map by cropping; practice for cropping
 #test.map <- getData('worldclim', var="bio", res=10)
