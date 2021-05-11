@@ -22,6 +22,7 @@ The time-series map show variations in Oxygen concentrations throughout the day,
 Limitations:
 The previous map minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations. Whilst there is no overlay for the image below onto another map because of differences in resolution (rescaling to a finer resolution may fix this), it provides a stronger perception of the distribution of points provided by the floats, and the oxygen levels. A larger proportion are distributed at the lower scale.
 ```
+#Depth beneath the surface in meters
 # A tibble: 10 x 11
    depth_range `0 - 21` `21 - 41` `41 - 61` `61 - 81` `101 - 121` `121 - 141` `141 - 161` `161 - 181` `181 - 201` `201-211`
    <fct>          <int>     <int>     <int>     <int>       <int>       <int>       <int>       <int>       <int>     <int>
