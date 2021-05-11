@@ -13,7 +13,7 @@ Below is a map for flag points regarding Oxygen, as you can see they're detected
 Below is a zoomed in image of the floating points, because these are values of Oxygen then the darker green represents higher Oxygen concentrations and the lighter contrast represent lower Oxygen concentrations. The time-series map show variations in Oxygen concentrations throughout the day, although consistent throughout the weeks, day 16 has a strong anamolous trend in comparison to previous days.
 
 Limitations:
-The map used minimising the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations.
+The map used minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations.
 
 
 ![alt text](https://i.stack.imgur.com/VDALr.png)
