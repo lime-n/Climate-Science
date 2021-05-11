@@ -6,7 +6,7 @@ library(rworldmap)
 library(sf)
 
 # get map by cropping; practice for cropping
-#test.map <- getData('worldclim', var="bio", res=10)
+test.map <- getData('worldclim', var="bio", res=10)
 #worldmap <- rworldmap::getMap(resolution = "coarse")
 #out <- crop(test.map$bio14, extent(70,105,-10,70))
 #test.map <- worldmap %>% rasterize(out)
