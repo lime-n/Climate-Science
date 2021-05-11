@@ -7,7 +7,7 @@ library(sf)
 
 # get map by cropping; practice for cropping
 test.map <- getData('worldclim', var="bio", res=10)
-#worldmap <- rworldmap::getMap(resolution = "coarse")
+worldmap <- rworldmap::getMap(resolution = "coarse")
 #out <- crop(test.map$bio14, extent(70,105,-10,70))
 #test.map <- worldmap %>% rasterize(out)
 
@@ -28,13 +28,13 @@ date <- getNcTime(id_579)
 #get the world-climate map - just for mapping processes
 test.map <- getData('worldclim', var="bio", res=10)
 #crop extent
-test.map <- crop(test.map$bio14, extent(70,105,-10,70))
+test.map <- crop(test.map, extent(70,105,-10,70))
  
-
+test.map <- worldmap %>% rasterize(test.map, field=1)
 
 
 #convert data into a dataframe
-tt <- data.frame(x=lon, y=lat, z=oxygen, date)
+tt <- data.frame(x=lon, y=lat, z=oxygen,depth,  date)
 #extract dates
 tt$day <- day(tt$date)
 tt$month <- month(tt$date)
@@ -46,14 +46,56 @@ dataset <- dataset %>% arrange(x)
 #remove the NAs
 dataset <- dataset[complete.cases(dataset),]
 #Convert to raster
+dataset <- dataset[, c(1:3)]
 oxy.data <- rasterFromXYZ(dataset)
 #assign a crs definition
 crs(oxy.data)<- "+proj=longlat +datum=WGS84 +no_defs"
+#aggregate to get a finer resolution
+oxy.agg <- aggregate(oxy.data, fact=20)
 
+#plot
+r_max <- ceiling(10 * cellStats(oxy.agg, max)) / 10
+brks <- seq(0, r_max, by = 34.7)
+brks
+cols <- colorRampPalette(c("red4","orange","gold","lightskyblue","dodgerblue","blue3"))(length(brks)-1) #this is the colour ramp - change the colours as you like, bu make sure they are symetrical around the "gray95", which represents the zero point!
 
-#oxy.agg <- aggregate(oxy.data, fact=10)
+plot(oxy.agg, 
+     col = cols, breaks = brks, 
+     maxpixels = ncell(oxy.agg),
+     legend = TRUE )
 
+#statistical tests
+#depth range
+ seq(0, max(dataset$depth), 100.8374)
+#[1]    0.0000  100.8374  201.6748  302.5122  403.3496  504.1870  605.0244  705.8618  806.6992  907.5366 1008.3740
+myIntervals <- c("0 - 100", "100 - 200", "200 - 300", "300 - 400","400 - 500","500 - 600","600 - 700","700 - 800","800 - 900","900 - 1010")
+dataset$depth_range<- myIntervals[findInterval(dataset$depth, c(0, 100.8374, 201.6748, 302.5122, 403.3496, 504.1870, 605.0244, 705.8618, 806.6992, 907.5366, 1008.3740))]
 
+#oxygen range
+seq(0, 209.5374, 20.95374)
+# [1]   0.00000  20.95374  41.90748  62.86122  83.81496 104.76870 125.72244 146.67618 167.62992 188.58366 209.53740
+myIntervals <- c("0 - 21", "21 - 41", "41 - 61", "61 - 81","81 - 101","101 - 121","121 - 141","141 - 161","161 - 181","181 - 201", "201-211")
+dataset$oxygen_range<- myIntervals[findInterval(dataset$z, c(0, 20.95374, 41.90748, 62.86122, 83.81496, 104.76870, 125.72244, 146.67618, 167.62992, 188.58366, 209.53740))]
+
+#count the frequency by their ranges
+
+dataset %>% count(depth_range, oxygen_range, day) %>% group_by(day)
+#glimpse
+# A tibble: 332 x 4
+# Groups:   day [15]
+#depth_range oxygen_range   day     n
+#<chr>       <chr>        <int> <int>
+#  1 0 - 100     101 - 121        2   416
+#2 0 - 100     101 - 121        3   566
+#3 0 - 100     101 - 121        4   440
+#4 0 - 100     101 - 121        5   459
+#5 0 - 100     101 - 121        6   753
+#6 0 - 100     101 - 121        7   612
+#7 0 - 100     101 - 121        8   643
+#8 0 - 100     101 - 121        9   499
+#9 0 - 100     101 - 121       10   940
+#10 0 - 100     101 - 121       11   611
+# ... with 322 more rows
 
 #potential to try:
 
@@ -123,17 +165,8 @@ dataset.raster <- dataset.bind[, -1] %>% st_as_sf(coords = c("X", "Y"), crs = 43
 
 #looking at the maps you can see the buffer around the points the data was collected from at th Bay of bengal.
 #lets merge the data together to see the distribution of the points
-map.merge <- merge(test.map$bio14, dataset.raster$z)
+map.merge <- merge(test.map, dataset.raster$z)
 
-brks <- seq(0, r_max, by = 0.006)
-
-cols <- colorRampPalette(c("red4","gray95","orange","gold","lightskyblue","dodgerblue","blue3"))(length(brks)-1) #this is the colour ramp - change the colours as you like, bu make sure they are symetrical around the "gray95", which represents the zero point!
-
-plot(p.urban, 
-     col = cols, breaks = brks, 
-     maxpixels = ncell(p.urban),
-     legend = FALSE, add = TRUE)
-points(ixy_urban[, 1:2], add=TRUE, pch=1, cex=1, col="blue")
 
 
 plot(map.merge)
