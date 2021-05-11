@@ -20,7 +20,7 @@ The time-series map show variations in Oxygen concentrations throughout the day,
 
 
 Limitations:
-The previous map minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations. Whilst there is no overlay for the image below onto another map because of differences in resolution (rescaling to a finer resolution may fix this), it provides a stronger perception of the distribution of points provided by the floats, and the oxygen levels. A larger proportion are distributed at the lower scale.
+The previous map minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations. Whilst there is no overlay for the image below onto another map because of differences in resolution (rescaling to a finer resolution may fix this), it provides a stronger perception of the distribution of points provided by the floats, and the oxygen levels. A larger proportion are distributed at the lower scale and surprisingly at larger depth (Further surprise is that higher concentrations of oxygen are prevalent at the surface, then diminish and lower concentrations are apparent at deeper depth - Inferring that a large-number of phytoplankton are present.)
 ```
 #Depth beneath the surface in meters
 #Column with ranges are the values of Oxygen collected by the glider that fall within one of those ranges.
