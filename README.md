@@ -8,11 +8,9 @@ Below is a map for flag points regarding Oxygen, as you can see they're detected
 
 
 ![alt text](https://i.stack.imgur.com/Jowbh.png)
-
+![alt text](https://i.stack.imgur.com/p3YeR.png)
 
 Below is a zoomed in image of the floating points, because these are values of Oxygen then the darker green represents higher Oxygen concentrations and the lighter contrast represent lower Oxygen concentrations. The time-series map show variations in Oxygen concentrations throughout the day, although consistent throughout the weeks, day 16 are a strong anamolous trend in comparison to previous days.
 
 
-![alt text](https://i.stack.imgur.com/p3YeR.png)
-
-![alt text](https://i.stack.imgur.com/hv2iL.png)
+![alt text](https://i.stack.imgur.com/VDALr.png)
