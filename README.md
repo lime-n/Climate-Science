@@ -21,5 +21,19 @@ The time-series map show variations in Oxygen concentrations throughout the day,
 
 Limitations:
 The previous map minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations. Whilst there is no overlay for the image below onto another map because of differences in resolution (rescaling to a finer resolution may fix this), it provides a stronger perception of the distribution of points provided by the floats, and the oxygen levels. A larger proportion are distributed at the lower scale.
+```
+   oxygen_range      n
+1        0 - 21 131559
+2       21 - 41  19147
+3       41 - 61   2373
+4       61 - 81   4698
+5      81 - 101   7586
+6     101 - 121  10768
+7     121 - 141   3757
+8     141 - 161   7063
+9     161 - 181   1170
+10    181 - 201    294
+11      201-211      1
+```
 
 ![alt text](https://i.stack.imgur.com/CzVpw.png)
