@@ -22,18 +22,19 @@ The time-series map show variations in Oxygen concentrations throughout the day,
 Limitations:
 The previous map minimises the coordinates per grid-cell to save on memory, therefore not all values from the dataset can be used per grid-cell. To resolve this, a better map with more points per grid-cell would provide a stronger indication, visually on the spatial trends in oxygen fluctuations. Whilst there is no overlay for the image below onto another map because of differences in resolution (rescaling to a finer resolution may fix this), it provides a stronger perception of the distribution of points provided by the floats, and the oxygen levels. A larger proportion are distributed at the lower scale.
 ```
-   oxygen_range      n
-1        0 - 21 131559
-2       21 - 41  19147
-3       41 - 61   2373
-4       61 - 81   4698
-5      81 - 101   7586
-6     101 - 121  10768
-7     121 - 141   3757
-8     141 - 161   7063
-9     161 - 181   1170
-10    181 - 201    294
-11      201-211      1
+# A tibble: 10 x 11
+   depth_range `0 - 21` `21 - 41` `41 - 61` `61 - 81` `101 - 121` `121 - 141` `141 - 161` `161 - 181` `181 - 201` `201-211`
+   <fct>          <int>     <int>     <int>     <int>       <int>       <int>       <int>       <int>       <int>     <int>
+ 1 0 - 100            0         0         0       116        8153        3757        7063        1170         294         1
+ 2 100 - 200       2713      2151      2345      4581        2615           0           0           0           0         0
+ 3 200 - 300      23123       540        28         1           0           0           0           0           0         0
+ 4 300 - 400      25481         0         0         0           0           0           0           0           0         0
+ 5 400 - 500      23197         0         0         0           0           0           0           0           0         0
+ 6 500 - 600      22976         0         0         0           0           0           0           0           0         0
+ 7 600 - 700      23782         0         0         0           0           0           0           0           0         0
+ 8 700 - 800       9272       492         0         0           0           0           0           0           0         0
+ 9 800 - 900       1015      7766         0         0           0           0           0           0           0         0
+10 900 - 1010         0      8197         0         0           0           0           0           0           0         0
 ```
 
 ![alt text](https://i.stack.imgur.com/CzVpw.png)
