@@ -46,7 +46,7 @@ dataset <- dataset %>% arrange(x)
 #remove the NAs
 dataset <- dataset[complete.cases(dataset),]
 #Convert to raster
-dataset <- dataset[, c(1:3)]
+
 oxy.data <- rasterFromXYZ(dataset)
 #assign a crs definition
 crs(oxy.data)<- "+proj=longlat +datum=WGS84 +no_defs"
@@ -79,11 +79,11 @@ dataset$oxygen_range<- myIntervals[findInterval(dataset$z, c(0, 20.95374, 41.907
 dataset$oxygen_range <- as.factor(dataset$oxygen_range)
 #fix the wrong order
 dataset$oxygen_range <- factor(dataset$oxygen_range, levels=levels(dataset$oxygen_range)[order(as.numeric(gsub("( -.*)", "", levels(dataset$oxygen_range))))])
-d <- d[order(d$x2), ]
+
 
 #count the frequency by their ranges; To test the distribution of data collected from the glider
 
-dataset %>% count(depth_range, oxygen_range, day) %>% group_by(day)
+ranges <- dataset %>% count(depth_range, oxygen_range, day) %>% group_by(day)
 #glimpse
 # A tibble: 332 x 4
 # Groups:   day [15]
@@ -104,9 +104,17 @@ dataset %>% count(depth_range, oxygen_range, day) %>% group_by(day)
 
 ranges <- data.frame(ranges)
 #arrange order
-ranges$oxygen_range <- factor(ranges$oxygen_range, levels=levels(ranges$oxygen_range)[order(as.numeric(gsub("( -.*)", "", levels(ranges$oxygen_range))))])
-
+ranges$depth_range <- factor(ranges$depth_range, levels=levels(ranges$depth_range)[order(as.numeric(gsub("( -.*)", "", levels(ranges$depth_range))))])
+ranges <- ranges[order(ranges$depth_range), ]
 str(ranges)
+#split data into wide
+
+#ranges <- dataset %>% count(depth_range, oxygen_range) %>% group_by(oxygen_range)
+#ranges <- aggregate(n~oxygen_range+depth_range, ranges, sum)
+#ranges <- ranges %>% pivot_wider(names_from = oxygen_range, values_from = n, values_fill=list(n=0))
+#ranges[, c(1, c(10, 11, 12, 2, 4, 5, 6, 7, 8, 9))]
+#names(ranges)[2:12] <- paste0("ranges_", names(ranges)[2:12])
+
 #str(ranges)
 #'data.frame':	332 obs. of  4 variables:
 #  $ depth_range : chr  "0 - 100" "0 - 100" "0 - 100" "0 - 100" ...
