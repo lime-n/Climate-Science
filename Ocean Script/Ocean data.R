@@ -180,7 +180,7 @@ summary(step.dataset$model)
 #nest the data within the dates
 dataset.expand1 <- dataset %>% 
   distinct(z, x, y, date) %>% 
-  # for 2019 use 2018 landcover data
+  # Assign years to the tibble
   mutate(year_lc = if_else(as.integer(date) > 2013, 
                            as.character(date), as.character(date))) %>% 
   # convert to spatial features
