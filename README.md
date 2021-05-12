@@ -7,7 +7,7 @@ The folder `Ocean Script` provides the script that I used with the following dat
 
 **Methodology**
 
-The data for ID - 579 was extracted using R-studio, using the packages `ncdf4` and `getNCTime` to effectively retrieve the coordinates, oxygen, depth and time from the netCDF file. Furthermore, a template map was taken from an R-repositry this was to overlay the coordinates from the glider data to check whether it matches the metadata. The data went through a filtering processes to select for individual dates and duration, and finally it was made into a raster than aggregated by a factor of 20 to increase the resolutionary scale to provide a finer grain to pixel size, figure 1.
+The data for ID - 579 was extracted using R-studio, using the packages `ncdf4` and `getNCTime` to effectively retrieve the coordinates, oxygen, depth and time from the netCDF file. Furthermore, a template map was taken from an R-repositry this was to overlay the coordinates from the glider data to check whether it matches the metadata. The data went through a filtering process to select for individual dates and duration, and finally it was made into a raster than aggregated by a factor of 20 to increase the resolutionary scale to provide a finer grain to pixel size, figure 1.
 
 ![alt text](https://i.stack.imgur.com/CzVpw.png)
 Figure 1. Displays the path the glider has taken alongside with the varying concentrations of Oxygen
@@ -69,7 +69,7 @@ F-statistic: 17.82 on 20 and 311 DF,  p-value: < 2.2e-16
 ```
 Figure 2. A stepforward selection of the Count data and Categorical covariates were fitted 
 
-#Linear model shows that as the number of counts collected from the glider for increase increases, then it declines as the days progress
+#Linear model shows that as the number of counts collected from the glider for increases, then it declines as the days progress
 #A lot of negative estimates, perhaps related towards the decline in accuracy and data-collection from the float over-time
 #Counts increase with depth, though increase in counts have a potential decrease in oxygen increase?
 #Though a better test may be necessary given that normality was weak, and further assumptions will need to be considered like colinearity between variables.
