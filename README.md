@@ -76,7 +76,7 @@ Figure 2. A stepforward selection of the Count data and Categorical covariates w
 
 
 
-
+**Extra notes:**
 Below is a map for flag points regarding Oxygen, as you can see they're detected and aligned on the Bay of Bengal as the data suggests. This was only used for ID - 579. Unfortuntely, I couldn't manage any effective way to collect all the time data from the dataset, as the metadata suggest it spans up to 20 days, I could only retrieve data from July 02 2016 - July 17 2016. :
 
 ![alt text](https://i.stack.imgur.com/Jowbh.png)
